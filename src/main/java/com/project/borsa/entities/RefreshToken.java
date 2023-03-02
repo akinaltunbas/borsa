@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
-@Table(name="refresh_token")
+@Table(name="refresh_tokens")
 public class RefreshToken {
 	
 	@Id
