@@ -4,7 +4,7 @@ public class ShareCreateRequestDto {
 	
 	private String code;
 	private String name;
-	private Long price;
+	private double price;
 	
 	public String getCode() {
 		return code;
@@ -18,12 +18,14 @@ public class ShareCreateRequestDto {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Long getPrice() {
+	public double getPrice() {
 		return price;
 	}
-	public void setPrice(Long price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
+	
+
 	
 	
 

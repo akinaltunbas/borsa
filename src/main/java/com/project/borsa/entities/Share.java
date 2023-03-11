@@ -16,15 +16,18 @@ import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.Builder;
+
 @Entity
 @Table(name="shares")
+@Builder
 public class Share {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String code;
 	private String name;
-	private long price;
+	private double price;
 	
 	@Transient
 	@Temporal(TemporalType.TIMESTAMP)
@@ -39,7 +42,7 @@ public class Share {
 		
 	}
 
-	public Share(String code, String name, long price, Date date, User user) {
+	public Share(String code, String name, double price, Date date, User user) {
 		super();
 		this.code = code;
 		this.name = name;
@@ -47,7 +50,16 @@ public class Share {
 		this.date = date;
 		this.user = user;
 	}
-
+	
+	public Share(Long id, String code, String name, double price, Date date, User user) {
+		super();
+		this.id = id;
+		this.code = code;
+		this.name = name;
+		this.price = price;
+		this.date = date;
+		this.user = user;
+	}
 
 
 	public Long getId() {
@@ -74,11 +86,11 @@ public class Share {
 		this.name = name;
 	}
 
-	public long getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(long price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
@@ -97,7 +109,10 @@ public class Share {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
+
+
+
+
 	
 	
 	
