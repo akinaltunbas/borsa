@@ -60,15 +60,15 @@ public class ShareServiceTest {
 	@Test
 	public void givenShareId_whenDeleteOneShare_thenNothing() {
 		
-		//given precondition or setup
+		//given 
 		long shareId = 1L;
 		
 		willDoNothing().given(shareRepository).deleteById(shareId);
 		
-		// when -  action or the behaviour that we are going test
+		// when 
 		shareService.deleteOneShareById(shareId);
 		
-		// then - verify the output
+		// then 
 		verify(shareRepository, times(1)).deleteById(shareId);
 	}
 	
@@ -76,7 +76,7 @@ public class ShareServiceTest {
 	@Test
 	public void givenShareList_whenGetAllShares_thenReturnShareList() {
 		
-		//given - precondition or setup
+		//given 
 		Share share1 = Share.builder()
 				.id(2L)
 				.code("THY")
@@ -86,10 +86,10 @@ public class ShareServiceTest {
 		given(shareRepository.findAll()).willReturn(List.of(share,share1));
 		
 		
-		//when - action or the behaviour tahat we are going test
+		//when
 		List<Share> shareList = shareService.getAllShares();
 		
-		//then - verify the output
+		//then
 		assertThat(shareList).isNotNull();
 		assertThat(shareList.size()).isEqualTo(2);
 	}
@@ -110,7 +110,7 @@ public class ShareServiceTest {
 	
 	@DisplayName("JUnit test for updateOneShareById method")
 	@Test
-	public void givenShare_whenUpdateShare_thenReturnUpdateEmployee() {
+	public void givenShare_whenUpdateShare_thenReturnUpdateShare() {
 		
 		//given
 		ShareUpdateRequestDto updateShareRequest = new ShareUpdateRequestDto();
@@ -121,7 +121,7 @@ public class ShareServiceTest {
 		updateShareRequest.setName("aaa");
 		updateShareRequest.setPrice(100.00);
 		
-		//when -action or teh behaviour tahat we are going test
+		//when 
 		Share updateShare = shareService.updateOneShareById(shareId, updateShareRequest);
 		
 		// then -verify the output
@@ -155,7 +155,7 @@ public class ShareServiceTest {
 	@Test
 	public void givenMyShareList_whenGetAllShares_thenReturnMyShareList() {
 		
-		//given precondition or setup
+		//given 
 		long userId = 1L;
 		given(shareRepository.findByUserId(1L)).willReturn(List.of(share));
 		

@@ -6,8 +6,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Builder;
+
 @Entity
 @Table(name="users")
+@Builder
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,8 +22,8 @@ public class User {
 	private String password;
 	private Role role;
 	
-	
-	public User(String name, String surname, String username, String email, String password, Role role) {
+	public User(long i, String name, String surname, String username, String email, String password, Role role) {
+		this.id = i;
 		this.name = name;
 		this.surname = surname;
 		this.username = username;
@@ -28,8 +31,10 @@ public class User {
 		this.password = password;
 		this.role = role;
 	}
+	
+	
 	public User() {
-		super();
+	
 	}
 	public Long getId() {
 		return id;
@@ -73,7 +78,9 @@ public class User {
 	public void setRole(Role role) {
 		this.role = role;
 	}
-	
+
+
+
 	
 	
 
