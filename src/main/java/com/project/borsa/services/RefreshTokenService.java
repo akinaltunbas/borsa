@@ -17,7 +17,7 @@ import com.project.borsa.repositories.RefreshTokenRepository;
 public class RefreshTokenService {
 	
 	@Value("${refresh.token.expires.in}")
-	Long expireSeconds;
+	Long expireSeconds=604800L;
 	
 	private RefreshTokenRepository refreshTokenRepository;
 
@@ -41,8 +41,12 @@ public class RefreshTokenService {
 		return token.getExpiryDate().before(new Date());
 	}
 
-	public RefreshToken getByUser(Long userId) {
-		return refreshTokenRepository.findByUserId(userId);	
+	public RefreshToken getByUser(Long userId) {	
+		return refreshTokenRepository.findByUserId(userId);
 	}
+
+
+
+
 
 }

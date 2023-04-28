@@ -17,12 +17,15 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.project.borsa.entities.User.UserBuilder;
 
-
+import lombok.Builder;
 
 @Entity
 @Table(name="refresh_tokens")
+@Builder
 public class RefreshToken {
 	
 	@Id
@@ -41,6 +44,17 @@ public class RefreshToken {
 	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	Date expiryDate;
+	
+	public RefreshToken(Long id, User user, String token, Date expiryDate) {
+		this.id = id;
+		this.user = user;
+		this.token = token;
+		this.expiryDate = expiryDate;
+	}
+
+	public RefreshToken() {
+	
+	}
 	
 	
 
@@ -75,7 +89,11 @@ public class RefreshToken {
 	public void setExpiryDate(Date expiryDate) {
 		this.expiryDate = expiryDate;
 	}
-	
+
+
+	}
+
+
 	
 
-}
+
