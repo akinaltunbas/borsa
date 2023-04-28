@@ -51,13 +51,13 @@ public class UserDetailsServiceImplTest {
 	@Test
 	public void testLoadUserByUsername() {
 		
-		
-		
+		//given
 		given(userRepository.findByUsername("akito")).willReturn(user);
 				
-				
+		//when	
 		UserDetails savedUser = userDetailsServiceImpl.loadUserByUsername(user.getUsername());
-				
+		
+		//then	
 		assertThat(savedUser).isNotNull();
 		
 	}
@@ -66,14 +66,13 @@ public class UserDetailsServiceImplTest {
 	@DisplayName("JUnit test for loadUserById")
 	@Test
 	public void testLoadUserById() {
-	
-		
+		//given
 		given(userRepository.findById(1L)).willReturn(Optional.of(user));
-				
-				
+		
+		//when
 		UserDetails savedUser = userDetailsServiceImpl.loadUserById(user.getId());
 				
-				
+		//then		
 		assertThat(savedUser).isNotNull();	
 }
 }

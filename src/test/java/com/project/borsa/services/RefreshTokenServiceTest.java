@@ -33,19 +33,18 @@ public class RefreshTokenServiceTest {
 	private RefreshToken refreshToken;
 	
 	
-	
-
-	
 	@DisplayName("Junit test for getByUser")
 	@Test 
 	public void testGetByUser() {
-	
+	//given
 	RefreshToken tokenMock = Mockito.mock(RefreshToken.class);
-
+	
+	//when
 	Mockito.when(refreshTokenRepository.findByUserId(ArgumentMatchers.any())).thenReturn(tokenMock);
 	
 	RefreshToken savedToken = refreshTokenService.getByUser(1L);
-
+	
+	//then
 	assertThat(savedToken).isNotNull();
 				
 		
@@ -56,17 +55,19 @@ public class RefreshTokenServiceTest {
 	@DisplayName("Junit test for createRefreshToken")
 	@Test
 	public void testCreateRefreshToken_NotNull() {
-		
+		//given
 		User user = new User();
 	
 		RefreshToken tokenMock = Mockito.mock(RefreshToken.class);
 
 		Mockito.when(refreshTokenRepository.findByUserId(ArgumentMatchers.any())).thenReturn(tokenMock);
 		
+		//when
 		String savedToken = refreshTokenService.createRefreshToken(user);
 		
 		savedToken= "9d55e4f2-4110-4e07-9428-e6c5fd5eba9c";
 		
+		//then
 		assertThat(savedToken).isNotNull();
 		
 		
@@ -74,12 +75,15 @@ public class RefreshTokenServiceTest {
 	@DisplayName("Junit test for createRefreshToken")
 	@Test
 	public void testCreateRefreshToken_Null() {
+		//given
 		User user = new User();
 		
+		//when
 		String savedToken = refreshTokenService.createRefreshToken(user);
 		
 		savedToken= null;
 		
+		//then
 		assertThat(savedToken).isNull();
 	}
 		
