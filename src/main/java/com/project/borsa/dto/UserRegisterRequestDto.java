@@ -1,5 +1,10 @@
 package com.project.borsa.dto;
 
+import java.util.Set;
+
+import com.project.borsa.entities.Role;
+import com.project.borsa.entities.User;
+
 public class UserRegisterRequestDto {
 	
 	private String name;
@@ -7,7 +12,7 @@ public class UserRegisterRequestDto {
 	private String email;
 	private String password;
 	private String username;
-	
+
 	
 	public String getName() {
 		return name;
@@ -39,7 +44,16 @@ public class UserRegisterRequestDto {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
 	
-	
+	public User getUserRegisterRequestDto() {
+		User user = new User();
+		user.setEmail(email);
+		user.setName(name);
+		user.setPassword(password);
+		user.setUsername(username);
+		
+		return user;
+	}
 
 }

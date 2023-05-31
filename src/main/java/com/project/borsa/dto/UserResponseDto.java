@@ -1,5 +1,7 @@
 package com.project.borsa.dto;
 
+import java.util.Set;
+
 import com.project.borsa.entities.Role;
 import com.project.borsa.entities.User;
 
@@ -11,7 +13,7 @@ public class UserResponseDto {
 	private String username;
 	private String email;
 	private String password;
-	private Role role;
+	private Set<Role> role;
 	
 	public UserResponseDto(User entity) {
 		this.id =  entity.getId();
@@ -20,7 +22,8 @@ public class UserResponseDto {
 		this.username = entity.getUsername();
 		this.email = entity.getEmail();
 		this.password = entity.getPassword();
-		this.role = entity.getRole();
+	//	this.role = entity.g;
+		
 	}
 
 	public Long getId() {
@@ -71,13 +74,16 @@ public class UserResponseDto {
 		this.password = password;
 	}
 
-	public Role getRole() {
+	public Set<Role> getRole() {
 		return role;
 	}
 
-	public void setRole(Role role) {
+	public void setRole(Set<Role> role) {
 		this.role = role;
 	}
+
+	
+
 	
 	
 

@@ -19,7 +19,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.project.borsa.entities.User.UserBuilder;
+//import com.project.borsa.entities.User.UserBuilder;
 
 import lombok.Builder;
 

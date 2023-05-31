@@ -1,19 +1,15 @@
 package com.project.borsa.dto;
 
+
 public class AuthResponseDto {
 	
-	private String message;
+	
 	private Long userId;
 	private String accessToken;
 	private String refreshToken;
+
 	
-	
-	public String getMessage() {
-		return message;
-	}
-	public void setMessage(String message) {
-		this.message = message;
-	}
+
 	public Long getUserId() {
 		return userId;
 	}
@@ -32,7 +28,7 @@ public class AuthResponseDto {
 	public void setRefreshToken(String refreshToken) {
 		this.refreshToken = refreshToken;
 	}
-	
+
 	
 
 }

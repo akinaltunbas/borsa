@@ -1,16 +1,21 @@
 package com.project.borsa.config;
 
+import javax.annotation.Resource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
+
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.BeanIds;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -18,37 +23,41 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
-import com.project.borsa.entities.Role;
 import com.project.borsa.security.JwtAuthenticationEntryPoint;
 import com.project.borsa.security.JwtAuthenticationFilter;
-import com.project.borsa.services.UserDetailsServiceImpl;
+
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+
 public class SecurityConfig {
 	
-	private UserDetailsServiceImpl userDetailsService;
+	@Resource(name = "userService")
+	private UserDetailsService userDetailsService;
 	
 	private JwtAuthenticationEntryPoint handler;
 	
-    public SecurityConfig(UserDetailsServiceImpl userDetailsService, JwtAuthenticationEntryPoint handler) {
+
+	
+    public SecurityConfig(UserDetailsService userDetailsService, JwtAuthenticationEntryPoint handler) {
         this.userDetailsService = userDetailsService;
         this.handler = handler;
     }
-
-    @Bean
-    public JwtAuthenticationFilter jwtAuthenticationFilter() {
-    	return new JwtAuthenticationFilter();
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
+ /*   @Bean
+    public PasswordEncoder encoder() {
         return new BCryptPasswordEncoder();
     }
-    
+  */  
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
+    }
+
+    
+    @Bean
+    public JwtAuthenticationFilter authenticationTokenFilterBean() throws Exception {
+        return new JwtAuthenticationFilter();
     }
     
     @Bean
@@ -85,14 +94,14 @@ public class SecurityConfig {
     		.permitAll()
     		.antMatchers( "/h2-console/**")
     		.permitAll()
-    	//	.antMatchers("/admin/**")
-    	//	.hasAnyAuthority("admin")
     		.anyRequest().authenticated();
     		
-    	httpSecurity.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+    		
+    	httpSecurity.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
     	return httpSecurity.build();
     }
 	
-    
+
+
 
 }

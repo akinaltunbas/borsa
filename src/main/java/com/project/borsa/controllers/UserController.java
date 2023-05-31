@@ -2,6 +2,7 @@ package com.project.borsa.controllers;
 
 import java.util.List;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,11 +23,13 @@ public class UserController {
 	
 
 	@GetMapping("/listShare")
+	@PreAuthorize("hasRole('USER')")
 	public List<Share> getAllShares(){
 		return shareService.getAllShares();
 	}
 	
-	@GetMapping
+	@GetMapping("/myShares")
+	@PreAuthorize("hasRole('USER')")
 	public List<Share> getAllMyShares(@RequestParam Long userId) {
 
 		return shareService.getAllMyShares(userId);

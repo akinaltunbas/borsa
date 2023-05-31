@@ -1,9 +1,17 @@
 package com.project.borsa.entities;
 
+
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import lombok.Builder;
@@ -20,19 +28,29 @@ public class User {
 	private String username;
 	private String email;
 	private String password;
-	private Role role;
 	
-	public User(long i, String name, String surname, String username, String email, String password, Role role) {
-		this.id = i;
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "USER_ROLES",
+            joinColumns = {
+            @JoinColumn(name = "USER_ID")
+            },
+            inverseJoinColumns = {
+            @JoinColumn(name = "ROLE_ID") })
+    private Set<Role> roles;
+	
+
+	public User(Long id, String name, String surname, String username, String email, String password, Set<Role> roles) {
+	
+		this.id = id;
 		this.name = name;
 		this.surname = surname;
 		this.username = username;
 		this.email = email;
 		this.password = password;
-		this.role = role;
+		this.roles = roles;
 	}
-	
-	
+
+
 	public User() {
 	
 	}
@@ -72,12 +90,23 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Role getRole() {
-		return role;
+
+
+	public Set<Role> getRoles() {
+		return roles;
 	}
-	public void setRole(Role role) {
-		this.role = role;
+
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
+
+
+
+	
+	
+
+
 
 
 

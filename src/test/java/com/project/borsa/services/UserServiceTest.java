@@ -2,14 +2,17 @@ package com.project.borsa.services;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.willDoNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -20,8 +23,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.project.borsa.dto.UserCreateRequestDto;
+import com.project.borsa.dto.UserRegisterRequestDto;
 import com.project.borsa.dto.UserUpdateRequestDto;
 import com.project.borsa.entities.Role;
 import com.project.borsa.entities.User;
@@ -35,8 +42,12 @@ public class UserServiceTest {
 	
 	@Mock
 	private UserRepository userRepository;
+	@Mock
+	private RoleService roleService;
 	
 	private User user;
+	
+	private PasswordEncoder bcryptEncoder;
 	
 	@BeforeEach
 	public void setup() {
@@ -49,7 +60,7 @@ public class UserServiceTest {
 			   .username("akito")
 			   .email("akin@hotmail.com")
 			   .password("1234")
-			   .role(Role.USER)
+			  // .role(Role.USER)
 			   .build();
 		
 	}
@@ -97,7 +108,7 @@ public class UserServiceTest {
 		userRequestDto.setUsername("Test-Username");
 		userRequestDto.setEmail("Test-Email");
 		userRequestDto.setPassword("Test-Password");
-		userRequestDto.setRole(Role.USER);
+	//	userRequestDto.setRole(Role.USER);
 		
 		//when
 		User userMock = Mockito.mock(User.class);
@@ -124,7 +135,7 @@ public class UserServiceTest {
 		updateUserRequest.setUsername("akito");
 		updateUserRequest.setEmail("akin@hotmail.com");
 		updateUserRequest.setPassword("1234");
-		updateUserRequest.setRole(Role.USER);
+	//	updateUserRequest.setRole(Role.USER);
 		
 		//when
 		User updateUser = userService.updateOneUserById(userId, updateUserRequest);
@@ -135,7 +146,7 @@ public class UserServiceTest {
 		assertThat(updateUser.getUsername()).isEqualTo("akito");
 		assertThat(updateUser.getEmail()).isEqualTo("akin@hotmail.com");
 		assertThat(updateUser.getPassword()).isEqualTo("1234");
-		assertThat(updateUser.getRole()).isEqualTo(Role.USER);
+	//	assertThat(updateUser.getRole()).isEqualTo(Role.USER);
 				
 	}
 	
@@ -144,7 +155,7 @@ public class UserServiceTest {
 	public void givenUserList_whenGetAllUsers_thenReturnUserList() {
 		
 		//given
-		User user2 = new User(2L,"anıl","yetisgin","anil","anıl@hotmail.com","1234",Role.USER);
+		User user2 = new User(2L,"anıl","yetisgin","anil","anıl@hotmail.com","1234",null);
 		given(userRepository.findAll()).willReturn(List.of(user,user2));
 		
 		//when
@@ -182,4 +193,22 @@ public class UserServiceTest {
 		//then
 		assertThat(savedUser).isNotNull();
 	}
+	
+	@DisplayName("JUnit test for loadUserByUsername")
+	@Test
+	public void testLoadUserByUsername() {
+		
+		//given
+		given(userRepository.findByUsername("akito")).willReturn(user);
+		given(userRepository.findByUsername(null));
+				
+		//when	
+		UserDetails savedUser = userService.loadUserByUsername(user.getUsername());
+		
+		//then	
+		assertThat(savedUser).isNotNull();
+		
+	}
+	
+
 }
