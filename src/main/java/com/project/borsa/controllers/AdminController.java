@@ -26,6 +26,7 @@ import com.project.borsa.entities.Share;
 import com.project.borsa.entities.User;
 import com.project.borsa.exceptions.UserNotFoundException;
 import com.project.borsa.dto.RoleCreateRequestDto;
+import com.project.borsa.dto.RoleUpdateRequestDto;
 import com.project.borsa.dto.ShareCreateRequestDto;
 import com.project.borsa.dto.ShareUpdateRequestDto;
 import com.project.borsa.dto.UserCreateRequestDto;
@@ -126,10 +127,36 @@ public class AdminController {
 	
 	//----------------------------------------------- ROLE HANDLİNG ----------------------------------------------------------------------------------------------//
 	
+	@GetMapping("/listRole")
+	@PreAuthorize("hasRole('ADMIN')")
+	public List<Role> getAllRoles(){
+		return roleService.getAllRoles();
+	}
+	
+	@GetMapping("/getRole/{roleId}")
+	@PreAuthorize("hasRole('ADMIN')")
+	public Role getOneRole(@PathVariable Long roleId) {
+		return roleService.getRoleById(roleId);
+	}
 
 	@PostMapping("/createRole")
 	@PreAuthorize("hasRole('ADMIN')")
 	public Role craeteOneRole(@RequestBody RoleCreateRequestDto newRoleRequest) {
 		return roleService.createOneRole(newRoleRequest);
+	}
+	
+	@PutMapping("/updateRole/{roleId}")
+	@PreAuthorize("hasRole('ADMIN')")
+	public ResponseEntity<Void> updateOneRole(@PathVariable Long roleId,@RequestBody RoleUpdateRequestDto updateRoleRequest) {
+		Role role = roleService.updateOneRoleById(roleId,updateRoleRequest);
+		if(role != null)
+			return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	@DeleteMapping("/deleteRole/{roleId}")
+	@PreAuthorize("hasRole('ADMIN')")
+	public void deleteOneRole(@PathVariable Long roleId) {
+		roleService.deleteOneRoleById(roleId);
 	}
 }
