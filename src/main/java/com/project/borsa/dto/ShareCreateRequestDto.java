@@ -1,5 +1,7 @@
 package com.project.borsa.dto;
 
+import com.project.borsa.entities.Share;
+
 public class ShareCreateRequestDto {
 	
 	private String code;
@@ -23,6 +25,12 @@ public class ShareCreateRequestDto {
 	}
 	public void setPrice(double price) {
 		this.price = price;
+	}
+	
+	public void mapShareCreateDtoToShare(Share share) {
+		share.setCode(this.getCode());
+		share.setName(this.getName());
+		share.setPrice(this.getPrice());
 	}
 	
 

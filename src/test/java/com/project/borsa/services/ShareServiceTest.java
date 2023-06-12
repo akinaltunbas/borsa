@@ -33,7 +33,7 @@ import com.project.borsa.repositories.ShareRepository;
 public class ShareServiceTest {
 	
 	@InjectMocks
-	private ShareService shareService;
+	private ShareServiceImpl shareService;
 	
 	@Mock
 	private ShareRepository shareRepository;  

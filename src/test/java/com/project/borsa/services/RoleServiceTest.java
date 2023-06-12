@@ -32,7 +32,7 @@ import com.project.borsa.repositories.RoleRepository;
 public class RoleServiceTest {
 	
 	@InjectMocks
-	private RoleService roleService;
+	private RoleServiceImpl roleService;
 	
 	@Mock
 	private RoleRepository roleRepository;

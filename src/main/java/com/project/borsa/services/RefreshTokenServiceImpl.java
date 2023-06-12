@@ -14,14 +14,14 @@ import com.project.borsa.repositories.RefreshTokenRepository;
 
 
 @Service
-public class RefreshTokenService {
+public class RefreshTokenServiceImpl  {
 	
 	@Value("${refresh.token.expires.in}")
 	Long expireSeconds=604800L;
 	
 	private RefreshTokenRepository refreshTokenRepository;
 
-	public RefreshTokenService(RefreshTokenRepository refreshTokenRepository) {
+	public RefreshTokenServiceImpl(RefreshTokenRepository refreshTokenRepository) {
 		this.refreshTokenRepository = refreshTokenRepository;
 	}
 	

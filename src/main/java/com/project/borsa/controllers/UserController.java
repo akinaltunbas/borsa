@@ -9,15 +9,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.borsa.entities.Share;
-import com.project.borsa.services.ShareService;
+import com.project.borsa.services.ShareServiceImpl;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
 	
-	private ShareService shareService;
+	private ShareServiceImpl shareService;
 
-	public UserController(ShareService shareService) {
+	public UserController(ShareServiceImpl shareService) {
 		this.shareService = shareService;
 	}
 	

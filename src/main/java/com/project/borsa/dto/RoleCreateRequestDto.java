@@ -1,5 +1,7 @@
 package com.project.borsa.dto;
 
+import com.project.borsa.entities.Role;
+
 public class RoleCreateRequestDto {
 	
 	private String name;
@@ -13,5 +15,7 @@ public class RoleCreateRequestDto {
 	}
 	
 	
-
+	public void mapRoleCreateRequestDtoToRole(Role role) {
+		role.setName(this.getName());
+	}
 }

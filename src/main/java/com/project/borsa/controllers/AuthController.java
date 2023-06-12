@@ -19,8 +19,8 @@ import com.project.borsa.entities.RefreshToken;
 import com.project.borsa.entities.User;
 import com.project.borsa.dto.UserLoginRequestDto;
 import com.project.borsa.security.JwtTokenProvider;
-import com.project.borsa.services.RefreshTokenService;
-import com.project.borsa.services.UserService;
+import com.project.borsa.services.RefreshTokenServiceImpl;
+import com.project.borsa.services.UserServiceImpl;
 
 
 @RestController
@@ -33,13 +33,13 @@ public class AuthController {
 	
 	private JwtTokenProvider jwtTokenUtil;
 	
-	private UserService userService;
+	private UserServiceImpl userService;
 	 
-	private RefreshTokenService refreshTokenService;
+	private RefreshTokenServiceImpl refreshTokenService;
 	 
 	 
     public AuthController(AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenUtil,
-			UserService userService, RefreshTokenService refreshTokenService) {
+			UserServiceImpl userService, RefreshTokenServiceImpl refreshTokenService) {
 	
 		this.authenticationManager = authenticationManager;
 		this.jwtTokenUtil = jwtTokenUtil;
@@ -84,6 +84,7 @@ public class AuthController {
 	
 		authResponse.setAccessToken("Bearer " + jwtToken);
 		authResponse.setUserId(user.getId());
+		authResponse.setRefreshToken(refreshTokenService.createRefreshToken(user));
 		return new ResponseEntity<>(authResponse, HttpStatus.CREATED);		
 	}
 	
@@ -101,7 +102,7 @@ public class AuthController {
 			response.setUserId(user.getId());
 			return new ResponseEntity<>(response, HttpStatus.OK);		
 		} else {
-
+			
 			return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
 		}
 		

@@ -38,12 +38,12 @@ import com.project.borsa.repositories.UserRepository;
 public class UserServiceTest {
 	
 	@InjectMocks
-	private UserService userService;
+	private UserServiceImpl userService;
 	
 	@Mock
 	private UserRepository userRepository;
 	@Mock
-	private RoleService roleService;
+	private RoleServiceImpl roleService;
 	
 	private User user;
 	

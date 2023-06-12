@@ -25,7 +25,7 @@ import com.project.borsa.repositories.RefreshTokenRepository;
 public class RefreshTokenServiceTest {
 	
 	@InjectMocks
-	private RefreshTokenService refreshTokenService;
+	private RefreshTokenServiceImpl refreshTokenService;
 	
 	@Mock
 	private RefreshTokenRepository refreshTokenRepository;

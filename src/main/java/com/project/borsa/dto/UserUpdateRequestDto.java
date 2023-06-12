@@ -1,6 +1,9 @@
 package com.project.borsa.dto;
 
+import java.util.Set;
+
 import com.project.borsa.entities.Role;
+import com.project.borsa.entities.User;
 
 public class UserUpdateRequestDto {
 	
@@ -48,7 +51,14 @@ public class UserUpdateRequestDto {
 		this.role = role;
 	}
 	
-	
+	public void mapUserUpdateRequestDtoToUser(User user) {
+		user.setName(this.getName());
+		user.setSurname(this.getSurname());
+		user.setUsername(this.getUsername());
+		user.setEmail(this.getEmail());
+		user.setPassword(this.getPassword());
+		
+	}
 	
 
 }

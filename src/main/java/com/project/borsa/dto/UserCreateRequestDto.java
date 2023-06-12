@@ -1,6 +1,7 @@
 package com.project.borsa.dto;
 
 import com.project.borsa.entities.Role;
+import com.project.borsa.entities.User;
 
 public class UserCreateRequestDto {
 	
@@ -47,6 +48,15 @@ public class UserCreateRequestDto {
 	}
 	public void setRole(Role role) {
 		this.role = role;
+	}
+	
+	public void mapUserCreateRequestDtoToUser(User user) {
+		user.setName(this.getName());
+		user.setSurname(this.getSurname());
+		user.setEmail(this.getEmail());
+		user.setPassword(this.getPassword());
+		user.setUsername(this.getUsername());
+		
 	}
 	
 	

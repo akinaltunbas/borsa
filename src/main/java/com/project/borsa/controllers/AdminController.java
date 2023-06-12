@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project.borsa.services.RoleService;
-import com.project.borsa.services.ShareService;
-import com.project.borsa.services.UserService;
+import com.project.borsa.services.RoleServiceImpl;
+import com.project.borsa.services.ShareServiceImpl;
+import com.project.borsa.services.UserServiceImpl;
 import com.project.borsa.dto.UserResponseDto;
 import com.project.borsa.dto.UserUpdateRequestDto;
 import com.project.borsa.entities.Role;
@@ -35,14 +35,14 @@ import com.project.borsa.dto.UserCreateRequestDto;
 @RequestMapping("/admin")
 public class AdminController {
 	
-	private UserService userService;
-	private ShareService shareService;
-	private RoleService roleService;
+	private UserServiceImpl userService;
+	private ShareServiceImpl shareService;
+	private RoleServiceImpl roleService;
 	
 	
 //----------------------------------------------- SHARE HANDLİNG ----------------------------------------------------------------------------------------------//
 	
-	public AdminController(UserService userService, ShareService shareService, RoleService roleService) {
+	public AdminController(UserServiceImpl userService, ShareServiceImpl shareService, RoleServiceImpl roleService) {
 		this.userService = userService;
 		this.shareService = shareService;
 		this.roleService = roleService;

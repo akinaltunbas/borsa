@@ -41,7 +41,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJha2l0byIsInJvbGVzIjoiUk9MRV9BRE1JTixST0xFX1VTRVIiLCJpYXQiOjE2ODY1NzMxNDQsImV4cCI6MTY4NjU5MTE0NH0.K0HgsbX-sLCMo2_MfgSxODf-B7w0KUXX_5TIGNAnA7A",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJha2l0byIsInJvbGVzIjoiUk9MRV9BRE1JTixST0xFX1VTRVIiLCJpYXQiOjE2ODY1ODQ2OTksImV4cCI6MTY4NjYwMjY5OX0.7swZoOKfwUc5z3jRPW4vtfQ2TlQw-IBa8485hQoIFxE",
 						"type": "text"
 					}
 				],
@@ -109,7 +109,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJha2l0byIsInJvbGVzIjoiUk9MRV9BRE1JTixST0xFX1VTRVIiLCJpYXQiOjE2ODY1NzMyNTksImV4cCI6MTY4NjU5MTI1OX0.w-DyK-yXdS6uXv8iVHuDd8fybvnkVSwgp8qzsW8jQTo",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjg2NTc1MTI0LCJleHAiOjE2ODY1OTMxMjR9.g2lIBYzgHyKhWQzbToMGZDH-JTZKRlc3u_f3v9P851c",
 						"type": "text"
 					}
 				],
@@ -218,6 +218,40 @@
 						"admin",
 						"deleteShare",
 						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateUser",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJha2l0byIsInJvbGVzIjoiUk9MRV9BRE1JTixST0xFX1VTRVIiLCJpYXQiOjE2ODY1OTQ4MzEsImV4cCI6MTY4NjYxMjgzMX0.hbCVUypzkp6C9PjLzdeXurBUZNQ6PrS422W93W_WpIc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"anil2\",\r\n    \"email\" : \"@admin.edu\",\r\n    \"name\" : \"anil\",\r\n    \"surname\" : \"altun\",\r\n    \"password\" : \"1234\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/admin/createUser",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"admin",
+						"createUser"
 					]
 				}
 			},
@@ -334,6 +368,32 @@
 			"response": []
 		},
 		{
+			"name": "DeleteUser",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJha2l0byIsInJvbGVzIjoiUk9MRV9BRE1JTixST0xFX1VTRVIiLCJpYXQiOjE2ODY1ODQ3MTYsImV4cCI6MTY4NjYwMjcxNn0.6hnuqhJW-KB5VuZsYvY2DF-A65THX8zGwy2HliXKqpE",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/admin/deleteUser/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"admin",
+						"deleteUser",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "RefreshToken",
 			"request": {
 				"method": "POST",
@@ -347,7 +407,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"userId\" : \"1\",\r\n    \"refreshToken\" : \"d4194605-c4a9-4fed-8297-81d038e0054a\"\r\n}",
+					"raw": "{\r\n    \"userId\" : \"1\",\r\n    \"refreshToken\" : \"17d6e649-9a52-497c-a17f-aac0c81bf286\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -416,7 +476,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJha2l0byIsInJvbGVzIjoiUk9MRV9BRE1JTixST0xFX1VTRVIiLCJpYXQiOjE2ODY1NzU4MTEsImV4cCI6MTY4NjU5MzgxMX0.eYK760bUdMGE84My2co0eHkYm85UrFtp4TL7U2EqDEY",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJha2l0byIsInJvbGVzIjoiUk9MRV9BRE1JTixST0xFX1VTRVIiLCJpYXQiOjE2ODY1ODQ3MTYsImV4cCI6MTY4NjYwMjcxNn0.6hnuqhJW-KB5VuZsYvY2DF-A65THX8zGwy2HliXKqpE",
 						"type": "text"
 					}
 				],
@@ -531,34 +591,56 @@
 			"response": []
 		},
 		{
-			"name": "CreateUser",
+			"name": "UserListShare",
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJha2l0byIsInJvbGVzIjoiUk9MRV9BRE1JTixST0xFX1VTRVIiLCJpYXQiOjE2ODY1NzU4MTEsImV4cCI6MTY4NjU5MzgxMX0.eYK760bUdMGE84My2co0eHkYm85UrFtp4TL7U2EqDEY",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJha2l0byIsInJvbGVzIjoiUk9MRV9VU0VSIiwiaWF0IjoxNjg2NTk2Njg1LCJleHAiOjE2ODY2MTQ2ODV9.1uK6xZMobE4rKNRxCC7E4ycT4UP_GrV58L3I9okMGpg",
 						"type": "text"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"username\" : \"anil\",\r\n    \"email\" : \"@admin.edu\",\r\n    \"name\" : \"anil\",\r\n    \"surname\" : \"altun\",\r\n    \"password\" : \"1234\"\r\n\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "localhost:8080/admin/createUser",
+					"raw": "localhost:8080/user/listShare",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"admin",
-						"createUser"
+						"user",
+						"listShare"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MyShares",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJha2l0bzEiLCJyb2xlcyI6IlJPTEVfQURNSU4sUk9MRV9VU0VSIiwiaWF0IjoxNjg2NTk5MDYxLCJleHAiOjE2ODY2MTcwNjF9.iFtL9Z3UbqElCravlJEobPlB83UaUb2lXjqicyG-5qg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/user/myShares?userId=1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"myShares"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "1"
+						}
 					]
 				}
 			},
