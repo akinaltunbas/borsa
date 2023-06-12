@@ -2,6 +2,7 @@ package com.project.borsa.dto;
 
 public class RefreshRequestDto {
 	
+	
 	private Long userId;
 	private String refreshToken;
 	
